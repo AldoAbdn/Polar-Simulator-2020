@@ -30,6 +30,10 @@ class Game {
         window.addEventListener('mouseup', this.MouseHandler, false);
         window.addEventListener('mousemove', this.MouseHandler, false);
         // Setup Music 
+        this.volume = document.getElementById("Volume");
+        console.log(this.volume);
+        this.volume.addEventListener("input", this.VolumeHandler, false);
+        this.volume.addEventListener("change", this.VolumeHandler, false);
         this.mainMusic = document.getElementById("MainMusic");
         this.endMusic = document.getElementById("EndMusic");
         this.music = this.mainMusic;
@@ -216,5 +220,12 @@ class Game {
 
     MouseHandler = (e) => {
         this.mouse = e;
+    }
+
+    VolumeHandler = (e) => {
+        console.log(e);
+        if(this.music != null){
+            this.music.volume = this.volume.valueAsNumber / 100;
+        }
     }
 }
