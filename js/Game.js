@@ -31,7 +31,7 @@ class Game {
         window.addEventListener('mousemove', this.MouseHandler, false);
         // Setup Music 
         this.mainMusic = document.getElementById("MainMusic");
-        this.bossMusic = document.getElementById("bossMusic");
+        this.endMusic = document.getElementById("EndMusic");
         this.music = this.mainMusic;
         // Setup Levels
         this.timeSplit = 0;
