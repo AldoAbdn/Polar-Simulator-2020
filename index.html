@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<script src="js/BoxRigidBody.js"></script>
-<script src="js/Bear.js"></script>
-<script src="js/Crate.js"></script>
-<script src="js/Border.js"></script>
-<script src="js/Game.js"></script>
-</head>
-<body>
-    <div id="MusicBar">
-        <span>Volume</span>
-        <input type="range" min="0" max="100" value="100" class="slider" id="Volume"/>
-    </div>
-<!--Title Screen-->
-<div id="TitleScreen">
-    <h1>Polar Simulator 2020</h1>
-    <h2>Last Stand</h2>
-    <h3>Created By Alistair Quinn</h3>
-    <a target="_blank" href="https://www.bensound.com/">Music from Bensound</a>
-    <button id="StartButton" onclick="startGame()">Start</button>
-</div>
-<!--Game Music from Bensound-->
-<audio id="MainMusic" type="audio/mp3">
-    <source src="music/epic.mp3"/>
-</audio>
-<audio id="EndMusic">
-    <source src="music/birthofahero.mp3" type="audio/mp3"/>
-</audio>
-<!--Init Scripts-->
-<script src="js/index.js"></script>
-</body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <!--Events-->
+        <script src="js/Events/GameOverEvent.js"></script>
+        <script src="js/Events/LevelOverEvent.js"></script>
+        <!--RigidBody-->
+        <script src="js/RigidBodys/BoxRigidBody.js"></script>
+        <script src="js/RigidBodys/Bear.js"></script>
+        <script src="js/RigidBodys/Crate.js"></script>
+        <script src="js/RigidBodys/Border.js"></script>
+        <!--GameEngine-->
+        <script src="js/GameEngine/MusicManager.js"></script>
+        <script src="js/GameEngine/Game.js"></script>
+    </head>
+    <body>
+        <div id="MusicBar">
+            <span>Volume</span>
+            <input type="range" min="0" max="100" value="100" class="slider" id="Volume"/>
+        </div>
+        <!--Title Screen-->
+        <div id="TitleScreen">
+            <h1>Polar Simulator 2020</h1>
+            <h2>Last Stand</h2>
+            <h3>Created By Alistair Quinn</h3>
+            <a target="_blank" href="https://www.bensound.com/">Music from Bensound</a>
+            <button id="StartButton" onclick="startGame()">Start</button>
+        </div>
+        <!--Game Music from Bensound-->
+        <audio id="MainMusic" type="audio/mp3">
+            <source src="music/epic.mp3"/>
+        </audio>
+        <audio id="EndMusic">
+            <source src="music/birthofahero.mp3" type="audio/mp3"/>
+        </audio>
+        <!--Init Scripts-->
+        <script src="js/index.js"></script>
+    </body>
+</html>

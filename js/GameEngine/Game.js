@@ -1,15 +1,3 @@
-class GameOverEvent extends Event {
-    constructor(){
-        super("GameOver");
-    }
-}
-
-class LevelOverEvent extends Event {
-    constructor(){
-        super("LevelOver");
-    }
-}
-
 class Game {
     constructor(){
         // Setup Canvas
@@ -29,14 +17,8 @@ class Game {
         window.addEventListener('mousedown', this.MouseHandler, false);
         window.addEventListener('mouseup', this.MouseHandler, false);
         window.addEventListener('mousemove', this.MouseHandler, false);
-        // Setup Music 
-        this.volume = document.getElementById("Volume");
-        console.log(this.volume);
-        this.volume.addEventListener("input", this.VolumeHandler, false);
-        this.volume.addEventListener("change", this.VolumeHandler, false);
-        this.mainMusic = document.getElementById("MainMusic");
-        this.endMusic = document.getElementById("EndMusic");
-        this.music = this.mainMusic;
+        // Music
+        this.musicManager = new MusicManager();
         // Setup Levels
         this.timeSplit = 0;
         this.lastTimeStamp = 0;
@@ -49,8 +31,6 @@ class Game {
 
     // Starts game loop
     Start = () => {
-        this.music.loop = true;
-        this.music.play();
         this.GameLoop(0);
     }
 
@@ -220,12 +200,5 @@ class Game {
 
     MouseHandler = (e) => {
         this.mouse = e;
-    }
-
-    VolumeHandler = (e) => {
-        console.log(e);
-        if(this.music != null){
-            this.music.volume = this.volume.valueAsNumber / 100;
-        }
     }
 }
