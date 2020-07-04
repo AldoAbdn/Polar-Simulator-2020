@@ -28,7 +28,7 @@ class MusicManager {
     }
 
     ConfigureVolumeSlider(){
-        this.volumeSlider = document.getElementById("Volume");
+        this.volumeSlider = document.getElementById("VolumeSlider");
         this.VolumeHandler = this.VolumeHandler.bind(this);
         this.volumeSlider.addEventListener("input", this.VolumeHandler, false);
         this.volumeSlider.addEventListener("change", this.VolumeHandler, false);
