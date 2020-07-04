@@ -43,6 +43,29 @@ class MusicManager {
         this.SetVolume(this.GetVolume());
     }
 
+    SetMusic(musicName){
+        let music = this.music[musicName];
+        if(music)
+            this.SetCurrentlyPlaying(music);
+        else 
+            alert("No music with tag: " + musicName + " exists");
+    }
+
+    Play(){
+        if(this.currentlyPlaying)
+            this.currentlyPlaying.play();
+    }
+
+    Stop(){
+        if(this.currentlyPlaying)
+            this.currentlyPlaying.stop();
+    }
+
+    Pause(){
+        if(this.currentlyPlaying)
+            this.currentlyPlaying.pause();
+    }
+
     VolumeHandler(e){
         if(this.GetCurrentlyPlaying() != null)
             this.SetVolume(this.volumeSlider.valueAsNumber);        
