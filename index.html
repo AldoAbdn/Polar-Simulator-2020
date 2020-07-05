@@ -16,7 +16,7 @@
         <script src="js/GameEngine/MusicManager.js"></script>
         <script src="js/GameEngine/Game.js"></script>
     </head>
-    <body>
+    <body onload="OnLoad()">
         <div id="MusicBar">
             <span>Volume</span>
             <input type="range" min="0" max="100" value="100" class="slider" id="VolumeSlider"/>
@@ -33,18 +33,16 @@
         </div>
         <!--End Credits-->
         <div id="EndCredits" class="animate-flicker">
-            <h1>Polar Simulator 2020</h1>
-            <h2>Last Stand</h2>
+            <div style="text-align: center;">
+                <h1>Polar Simulator 2020</h1>
+                <h2>Last Stand</h2>
+            </div>
             <h3>Created By Alistair Quinn</h3>
-            <br/>
-            <br/>
             <h3>Programmed By Alistair Quinn</h3>
-            <br/>
-            <br/>
-            <a target="_blank" href="https://www.bensound.com/"><h3>Music from Bensound</h3></a>
-            <br/>
-            <br/>
+            <h3><a target="_blank" href="https://www.bensound.com/">Music from Bensound</a></h3>
+            <h3>Images are from Google, marked free for reuse</h3>
             <h3>Thanks For Playing! <a target="_blank" href="https://github.com/AldoAbdn">Check Out My GitHub</a></h3>
+            <h3>"Time you enjoy wasting is not wasted time"</h3>
         </div>
         <!--Game Music from Bensound-->
         <audio id="MainMusic" type="audio/mp3">
