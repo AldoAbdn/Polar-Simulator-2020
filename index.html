@@ -12,6 +12,7 @@
         <script src="js/RigidBodys/Crate.js"></script>
         <script src="js/RigidBodys/Border.js"></script>
         <!--GameEngine-->
+        <script src="js/GameEngine/GameManager.js"></script>
         <script src="js/GameEngine/MusicManager.js"></script>
         <script src="js/GameEngine/Game.js"></script>
     </head>
@@ -20,13 +21,30 @@
             <span>Volume</span>
             <input type="range" min="0" max="100" value="100" class="slider" id="VolumeSlider"/>
         </div>
+        <!--Game Canvas-->
+        <canvas id="GameCanvas"></canvas>
         <!--Title Screen-->
         <div id="TitleScreen">
             <h1>Polar Simulator 2020</h1>
             <h2>Last Stand</h2>
             <h3>Created By Alistair Quinn</h3>
             <a target="_blank" href="https://www.bensound.com/">Music from Bensound</a>
-            <button id="StartButton" onclick="startGame()">Start</button>
+            <button id="StartButton" onclick="gameManager.StartGame()">Start</button>
+        </div>
+        <!--End Credits-->
+        <div id="EndCredits" class="animate-flicker">
+            <h1>Polar Simulator 2020</h1>
+            <h2>Last Stand</h2>
+            <h3>Created By Alistair Quinn</h3>
+            <br/>
+            <br/>
+            <h3>Programmed By Alistair Quinn</h3>
+            <br/>
+            <br/>
+            <a target="_blank" href="https://www.bensound.com/"><h3>Music from Bensound</h3></a>
+            <br/>
+            <br/>
+            <h3>Thanks For Playing! <a target="_blank" href="https://github.com/AldoAbdn">Check Out My GitHub</a></h3>
         </div>
         <!--Game Music from Bensound-->
         <audio id="MainMusic" type="audio/mp3">

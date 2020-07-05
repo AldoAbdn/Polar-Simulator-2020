@@ -1,3 +1,4 @@
+/* Base */
 html, body {
     font-family: Atarian;
     width: 100%;
@@ -7,6 +8,9 @@ html, body {
 }
 canvas {
     background-color:  #add8e6;
+}
+#GameCanvas {
+    display: none;
 }
 #TitleScreen {
     height: 100%;
@@ -50,3 +54,93 @@ a {
     font-family: Atarian;
     src:url(../fonts/sf-atarian-system/Atarian/SF\ Atarian\ System.ttf);
 }
+#EndCredits {
+    display: none;
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+/* Vertical scroll animation */
+.vertical-scroll {
+ height: 200px;	
+ overflow: hidden;
+ position: relative;
+}
+.vertical-scroll > * {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateY(100%);
+ -webkit-transform:translateY(100%);	
+ transform:translateY(100%);
+ /* Apply animation to this element */	
+ -moz-animation: VerticalScroll 30s linear;
+ -webkit-animation: VerticalScroll 30s linear;
+ animation: VerticalScroll 30s linear;
+}
+/* Move it (define the animation) */
+@-moz-keyframes VerticalScroll {
+ 0%   { -moz-transform: translateY(100%); }
+ 100% { -moz-transform: translateY(-100%); }
+}
+@-webkit-keyframes VerticalScroll {
+ 0%   { -webkit-transform: translateY(100%); }
+ 100% { -webkit-transform: translateY(-100%); }
+}
+@keyframes VerticalScroll {
+ 0%   { 
+ -moz-transform: translateY(100%); /* Firefox bug fix */
+ -webkit-transform: translateY(100%); /* Firefox bug fix */
+ transform: translateY(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateY(-100%); /* Firefox bug fix */
+ -webkit-transform: translateY(-100%); /* Firefox bug fix */
+ transform: translateY(-100%); 
+ }
+}
+
+/* Fade in and out animation */
+.animate-flicker > * {
+    -webkit-animation: flickerAnimation 10s;
+    -moz-animation: flickerAnimation 10s;
+    -o-animation: flickerAnimation 10s;
+     animation: flickerAnimation 10s;
+}
+.animate-flicker > *:nth-child(1) {
+    animation-delay: .5s;
+}
+.animate-flicker > *:nth-child(2) {
+    animation-delay: 1s;
+}
+.animate-flicker > *:nth-child(3) {
+    animation-delay: 1s;
+}
+@keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-o-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-moz-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-webkit-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }

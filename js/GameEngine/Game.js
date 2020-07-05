@@ -1,15 +1,14 @@
 class Game {
     constructor(){
         // Setup Canvas
-        this.canvas = document.createElement("canvas");
+        this.canvas = document.getElementById("GameCanvas");
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         // Set Context
         this.context = this.canvas.getContext('2d');
         // Events
-        window.addEventListener('GameOver', this.GameOver, false);
-        window.addEventListener('LevelOver', this.LevelOver, false);
+        document.addEventListener('GameOver', this.GameOver, false);
+        document.addEventListener('LevelOver', this.LevelOver, false);
         this.keyPresses = {};
         this.mouse;
         window.addEventListener('keydown', this.KeyDownHandler, false);
@@ -179,7 +178,7 @@ class Game {
     }
 
     GameOver = (e) => {
-        this.currentLevel = this.levels[0];
+
     }
 
     LevelOver = (e) => {

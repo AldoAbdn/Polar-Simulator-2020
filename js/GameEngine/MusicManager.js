@@ -22,7 +22,7 @@ class MusicManager {
 
     SetCurrentlyPlaying(music){
         if(this.currentlyPlaying)
-            this.currentlyPlaying.stop();
+            this.currentlyPlaying.pause();
         this.currentlyPlaying = music;
         this.currentlyPlaying.play();
     }
@@ -57,8 +57,11 @@ class MusicManager {
     }
 
     Stop(){
-        if(this.currentlyPlaying)
-            this.currentlyPlaying.stop();
+        if(this.currentlyPlaying){
+            this.currentlyPlaying.pause();
+            this.currentlyPlaying.src = this.currentlyPlaying.src;
+        }
+
     }
 
     Pause(){
