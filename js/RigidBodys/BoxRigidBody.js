@@ -15,9 +15,28 @@ class BoxRigidBody {
         this.mass = mass;
         this.solid = solid;
         this.velocity = {x:0,y:0};
-        this.falling = true;
+        this.falling = false;
         // Collectable 
-        this.collectable;
+        this.collectable = collectable;
+    }
+
+    Stop() {
+        this.velocity = {x:0,y:0};
+        this.acceleration = {x:0,y:0};
+    }
+
+    StopX(){
+        this.velocity.x = 0;
+        this.acceleration.x = 0;
+    }
+
+    StopY(){
+        this.velocity.y = 0;
+        this.acceleration.y = 0;
+    }
+
+    Falling() {
+        return this.velocity.y != 0 && this.acceleration.y != 0;
     }
 
     SetPosition = (x, y) => {

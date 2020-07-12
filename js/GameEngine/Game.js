@@ -49,10 +49,8 @@ class Game {
     }
 
     UserInput = () => {
-        if(this.keyPresses['w'] && !this.player.falling){
+        if(this.keyPresses['w'] && !this.player.Falling())
             this.player.ApplyForce({x:0,y:-200});
-            this.player.falling = true;
-        }
         else if(this.keyPresses['a'])
             this.player.ApplyForce({x:-200,y:0});
         else if(this.keyPresses['d'])
@@ -70,14 +68,14 @@ class Game {
 
     ApplyGravity = (gameObject) => {
 
-        if(!gameObject.fixed && gameObject.falling){
+        if(!gameObject.fixed && gameObject.Falling()){
             gameObject.ApplyForce(gameObject.Weight(this.gravity));
         }
 
     }
 
     ApplyAirResistance = (gameObject) => {
-        if(gameObject.falling)
+        if(gameObject.Falling())
             this.ApplyFriction(gameObject, 0.5);
     }
 
@@ -95,7 +93,6 @@ class Game {
         if(gameObject.acceleration.y < 5 && gameObject.acceleration.y > -5){
             gameObject.acceleration.y = 0;
             gameObject.velocity.y = 0;
-            gameObject.falling = false;
         } else {
             if(gameObject.velocity.y > 0)
                 gameObject.velocity.y *= -1 * bounciness;
@@ -120,20 +117,19 @@ class Game {
         let collision = this.ResolveSideCollision(colliding, collideable);
         switch(collision){
             case "TOP":
-                colliding.acceleration.y = 0;
-                colliding.velocity.y = 0;
+                colliding.StopY();
                 break;
             case "BOTTOM":
-                colliding.falling = false;
+                colliding.StopY();
                 this.ApplyBounciness(colliding, collideable.bounciness);
                 this.ApplyFriction(colliding, collideable.friction);
                 break;
             case "LEFT":
-                colliding.velocity.x = 0;
-                colliding.acceleration.x = 0;
+                colliding.StopX();
+                break;
             case "Right":
-                colliding.velocity.x = 0;
-                colliding.acceleration.x = 0;
+                colliding.StopX();
+                break;
         }
     }
 
