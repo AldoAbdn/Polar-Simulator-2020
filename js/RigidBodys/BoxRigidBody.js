@@ -1,12 +1,24 @@
 class BoxRigidBody {
-    constructor(x,y,width,height,fill,fixed=true,friction=0.9,bounciness=0,mass=1,solid=true,collectable=false){
+    constructor(x,y,width,height,fillLeft,fillRight,fixed=true,friction=0.9,bounciness=0,mass=1,solid=true,collectable=false){
         // Rect
         this.x = x; 
         this.y = y;
         this.width = width;
         this.height = height;
         // Fill
-        this.fill = fill
+        if(fillLeft.startsWith("#"))
+            this.fillLeft = fillLeft;
+        else {
+            this.fillLeft = new Image();
+            this.fillLeft.src = fillLeft;
+        }
+        if(fillRight.startsWith("#"))
+            this.fillRight = fillRight;
+        else {
+            this.fillRight = new Image();
+            this.fillRight.src = fillRight;
+        }
+        this.fill = this.fillLeft;
         // Physics
         this.fixed = fixed;
         this.friction = friction;
@@ -99,6 +111,10 @@ class BoxRigidBody {
         this.velocity.y += this.acceleration.y * seconds;
         this.x += this.velocity.x * seconds;
         this.y += this.velocity.y * seconds;
+        if(this.velocity.x > 0)
+            this.fill = this.fillRight;
+        else if(this.velocity.x < 0)
+            this.fill = this.fillLeft;
     }
 
     Colliding = (collider) => {
