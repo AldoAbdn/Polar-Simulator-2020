@@ -2,6 +2,8 @@ class MusicManager {
     constructor(){
         this.ConfigureVolumeSlider();
         this.ConfigureMusic();
+        if(!localStorage.getItem("volume"))
+            localStorage.setItem("volume", 100);
     }
 
     GetVolume(){
