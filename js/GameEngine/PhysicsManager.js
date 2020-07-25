@@ -4,7 +4,7 @@ class PhysicsManager {
     }
 
     ApplyPhysics(rigidBody){
-        this.ResolveCollisions(rigidBody);
+        // this.ResolveCollisions(rigidBody);
         this.ApplyGravity(rigidBody);
         this.ApplyAirResistance(rigidBody);
     }
@@ -42,7 +42,7 @@ class PhysicsManager {
         }
     }
     
-    ResolveCollisions(rigidBody){
+    ResolveCollisions(rigitBodys, rigidBody){
         this.rigidBodys.forEach(collideable => {
             // Check if there was a collision
             if(rigidBody!=collideable && rigidBody.Colliding(collideable) && !rigidBody.fixed){

@@ -1,30 +1,20 @@
 class Game {
     constructor(){
-        // Setup Canvas
-        this.canvas = document.getElementById("GameCanvas");
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-        // Set Context
-        this.context = this.canvas.getContext('2d');
+        // Display
+        this.displayManager = new DisplayManager();
         // Events
         this.GameOver = this.GameOver.bind(this);
         this.LevelOver = this.LevelOver.bind(this);
         document.addEventListener('GameOver', this.GameOver, false);
         document.addEventListener('LevelOver', this.LevelOver, false);
-        this.keyPresses = {};
-        this.mouse;
-        this.KeyDownHandler = this.KeyDownHandler.bind(this);
-        this.KeyUpHandler = this.KeyUpHandler.bind(this);
-        this.MouseHandler = this.MouseHandler.bind(this);
-        window.addEventListener('keydown', this.KeyDownHandler, false);
-        window.addEventListener('keyup', this.KeyUpHandler, false);
-        window.addEventListener('mousedown', this.MouseHandler, false);
-        window.addEventListener('mouseup', this.MouseHandler, false);
-        window.addEventListener('mousemove', this.MouseHandler, false);
+        // Input
+        this.inputManager = new InputManager();
         // Music
         this.musicManager = new MusicManager();
         // Physics
-        this.physics = new PhysicsManager();
+        this.physicsManager = new PhysicsManager();
+        // Game Loop
+        this.GameLoop = this.GameLoop.bind(this);
         // Setup Levels
         this.timeSplit = 0;
         this.lastTimeStamp = 0;
@@ -43,38 +33,12 @@ class Game {
     GameLoop(timestamp){
         window.requestAnimationFrame(this.GameLoop);
         this.timeSplit = timestamp - this.lastTimeStamp;
-        this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
-        this.UserInput();
-        this.gameObjects.forEach(gameObject => {
-            // Apply Physics
-            this.PhysicsManager.ApplyPhysics(gameObject);
-            this.ResolveCollisions(gameObject);
-            this.ApplyGravity(gameObject);
-            this.ApplyAirResistance(gameObject);
-            // Update
-            gameObject.Update(this.timeSplit/1000);
-            // Draw
-            this.Draw(gameObject);
-        });
+        this.displayManager.Clear();
+        this.inputManager.HandleInput(this.gameObjects);
+        this.physicsManager.ApplyPhysics(this.gameObjects);
+        this.gameObjects.forEach(gameObject => gameObject.Update(this.timeSplit/1000));
+        this.displayManager.Draw(this.gameObjects);
         this.lastTimeStamp = timestamp;
-    }
-
-    UserInput(){
-        if(this.keyPresses['w'] && !this.player.Falling())
-            this.player.ApplyForce({x:0,y:-200});
-        else if(this.keyPresses['a'])
-            this.player.ApplyForce({x:-200,y:0});
-        else if(this.keyPresses['d'])
-            this.player.ApplyForce({x:200,y:0});
-    }
-
-    Draw(gameObject){
-        if(gameObject.fill instanceof Image)
-            this.context.drawImage(gameObject.fill, gameObject.x, gameObject.y, gameObject.width, gameObject.height);
-        else {
-            this.context.fillStyle = gameObject.fill;
-            this.context.fillRect(gameObject.x, gameObject.y, gameObject.width, gameObject.height);
-        }
     }
 
     GameOver(e){
@@ -87,17 +51,5 @@ class Game {
             Element.dispatchEvent(new GameOverEvent());
         else 
             this.currentLevel = this.levels[nextLevelIndex];
-    }
-
-    KeyDownHandler(e){
-        this.keyPresses[e.key] = true;
-    }
-
-    KeyUpHandler(e){
-        this.keyPresses[e.key] = false;
-    }
-
-    MouseHandler = (e) => {
-        this.mouse = e;
     }
 }
