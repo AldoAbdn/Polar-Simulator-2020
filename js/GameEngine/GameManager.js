@@ -19,7 +19,6 @@ class GameManager {
         this.title.style.display = "none";
         this.musicBar.style.display = "block";
         this.gameCanvas.style.display = "block";
-        setTimeout(()=>document.dispatchEvent(new GameOverEvent()), 3000);
     }
 
     GameOver() {

@@ -3,10 +3,12 @@ class PhysicsManager {
         this.gravity = gravity;
     }
 
-    ApplyPhysics(rigidBody){
-        // this.ResolveCollisions(rigidBody);
-        this.ApplyGravity(rigidBody);
-        this.ApplyAirResistance(rigidBody);
+    ApplyPhysics(rigidBodys){
+        rigidBodys.forEach(rigidBody => {
+            this.ResolveCollisions(rigidBodys,rigidBody);
+            this.ApplyGravity(rigidBody);
+            this.ApplyAirResistance(rigidBody);
+        });
     }
 
     ApplyGravity(rigidBody){
@@ -42,8 +44,8 @@ class PhysicsManager {
         }
     }
     
-    ResolveCollisions(rigitBodys, rigidBody){
-        this.rigidBodys.forEach(collideable => {
+    ResolveCollisions(rigidBodys, rigidBody){
+        rigidBodys.forEach(collideable => {
             // Check if there was a collision
             if(rigidBody!=collideable && rigidBody.Colliding(collideable) && !rigidBody.fixed){
                 this.ResolveFixedCollision(rigidBody, collideable);

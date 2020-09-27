@@ -2,7 +2,7 @@ class MusicManager {
     constructor(){
         this.ConfigureVolumeSlider();
         this.ConfigureMusic();
-        if(!localStorage.getItem("volume"))
+        if(!localStorage.getItem("volume") || isNaN(localStorage.getItem("volume")))
             localStorage.setItem("volume", 100);
     }
 
@@ -11,11 +11,13 @@ class MusicManager {
     }
 
     SetVolume(volume) {
-        if(this.volumeSlider.valueAsNumber != volume)
-            this.volumeSlider.value = volume;
-        localStorage.setItem("volume", volume);
-        if(this.currentlyPlaying)
-            this.currentlyPlaying.volume = volume / 100;
+        if(volume && !isNaN(volume)){
+            if(this.volumeSlider.valueAsNumber != volume)
+                this.volumeSlider.value = volume;
+            if(this.currentlyPlaying)
+                this.currentlyPlaying.volume = volume / 100;
+            localStorage.setItem("volume", volume);
+        }
     }
 
     GetCurrentlyPlaying(){

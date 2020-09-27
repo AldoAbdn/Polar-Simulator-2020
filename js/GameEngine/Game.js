@@ -20,8 +20,8 @@ class Game {
         this.lastTimeStamp = 0;
         this.gravity = 10;
         this.levels = [];
-        this.player = new Bear(10, this.canvas.height-150, 50, 100, 10);
-        this.gameObjects = [this.player, new Border(0, this.canvas.height - 50, this.canvas.width, 50), new Border(-50, 0, 50, this.canvas.height), new Border(this.canvas.width, 0, 50, this.canvas.height), new Border(0, -50, this.canvas.width, 50)]
+        this.player = new Bear(10, this.displayManager.canvas.height-150, 50, 100, 10);
+        this.gameObjects = [this.player, new Border(0, this.displayManager.canvas.height - 50, this.displayManager.canvas.width, 50), new Border(-50, 0, 50, this.displayManager.canvas.height), new Border(this.displayManager.canvas.width, 0, 50, this.displayManager.canvas.height), new Border(0, -50, this.displayManager.canvas.width, 50)]
        // this.currentLevel = this.levels[0];
     }
 

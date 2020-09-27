@@ -129,4 +129,8 @@ class BoxRigidBody {
     Weight = (gravity) => {
         return {x:0, y:this.mass * gravity};
     }
+
+    handleInput(keyPresses, mouse){
+
+    }
 }
