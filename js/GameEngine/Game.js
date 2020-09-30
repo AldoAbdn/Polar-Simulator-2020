@@ -1,5 +1,8 @@
 class Game {
     constructor(){
+        // FPS
+        this.fps = 60;
+        this.fpsInterval = 1000 / this.fps;
         // Display
         this.displayManager = new DisplayManager();
         // Events
@@ -16,6 +19,7 @@ class Game {
         // Game Loop
         this.GameLoop = this.GameLoop.bind(this);
         // Setup Levels
+        this.timer = 0;
         this.timeSplit = 0;
         this.lastTimeStamp = 0;
         this.gravity = 10;
@@ -33,11 +37,15 @@ class Game {
     GameLoop(timestamp){
         window.requestAnimationFrame(this.GameLoop);
         this.timeSplit = timestamp - this.lastTimeStamp;
-        this.displayManager.Clear();
-        this.inputManager.HandleInput(this.gameObjects);
-        this.physicsManager.ApplyPhysics(this.gameObjects);
-        this.gameObjects.forEach(gameObject => gameObject.Update(this.timeSplit/1000));
-        this.displayManager.Draw(this.gameObjects);
+        this.timer += this.timeSplit;
+        if(this.timer > this.fpsInterval){
+            this.displayManager.Clear();
+            this.inputManager.HandleInput(this.gameObjects);
+            this.physicsManager.ApplyPhysics(this.gameObjects);
+            this.gameObjects.forEach(gameObject => gameObject.Update(this.timer/1000));
+            this.displayManager.Draw(this.gameObjects);
+            this.timer = 0;
+        }
         this.lastTimeStamp = timestamp;
     }
 
