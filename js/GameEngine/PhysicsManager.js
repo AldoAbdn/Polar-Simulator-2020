@@ -7,7 +7,7 @@ class PhysicsManager {
         rigidBodys.forEach(rigidBody => {
             this.ResolveCollisions(rigidBodys,rigidBody);
             this.ApplyGravity(rigidBody);
-            this.ApplyAirResistance(rigidBody);
+            //this.ApplyAirResistance(rigidBody);
         });
     }
 
@@ -59,18 +59,13 @@ class PhysicsManager {
         let collision = this.ResolveSideCollision(colliding, collideable);
         switch(collision){
             case "TOP":
-                colliding.StopY();
-                break;
             case "BOTTOM":
                 colliding.StopY();
-                this.ApplyBounciness(colliding, collideable.bounciness);
-                this.ApplyFriction(colliding, collideable.friction);
                 break;
             case "LEFT":
+            case "RIGHT":
                 colliding.StopX();
-                break;
-            case "Right":
-                colliding.StopX();
+                console.log(colliding);
                 break;
         }
     }

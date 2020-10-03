@@ -14,7 +14,7 @@ class GameManager {
     }
     
     StartGame() {
-        this.game = new Game();
+        this.game = new GameEngine();
         this.game.Start();
         this.title.style.display = "none";
         this.musicBar.style.display = "block";

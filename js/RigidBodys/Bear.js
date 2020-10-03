@@ -11,5 +11,7 @@ class Bear extends BoxRigidBody
             this.ApplyForce({x:-200,y:0});
         else if(keyPresses['d'])
             this.ApplyForce({x:200,y:0});
+        else
+            this.StopX();
     }
 }
