@@ -3,9 +3,13 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <!--Util-->
+        <script src="js/Util/FPS.js"></script>
+        <script src="js/Util/Timer.js"></script>
         <!--Events-->
         <script src="js/Events/GameOverEvent.js"></script>
         <script src="js/Events/LevelOverEvent.js"></script>
+        <script src="js/Events/LevelResetEvent.js"></script>
         <!--RigidBody-->
         <script src="js/RigidBodys/BoxRigidBody.js"></script>
         <script src="js/RigidBodys/Bear.js"></script>
@@ -17,7 +21,11 @@
         <script src="js/GameEngine/InputManager.js"></script>
         <script src="js/GameEngine/MusicManager.js"></script>
         <script src="js/GameEngine/PhysicsManager.js"></script>
-        <script src="js/GameEngine/Game.js"></script>
+        <script src="js/GameEngine/LevelManager.js"></script>
+        <script src="js/GameEngine/GameEngine.js"></script>
+        <!--Levels-->
+        <script src="js/Levels/Level.js"></script>
+        <script src="js/Levels/Level1.js"></script>
     </head>
     <body onload="OnLoad()">
         <div id="MusicBar">

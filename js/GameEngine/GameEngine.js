@@ -5,7 +5,7 @@ class GameEngine {
         this.inputManager = new InputManager();
         this.musicManager = new MusicManager();
         this.physicsManager = new PhysicsManager();
-        this.Timer = new Timer();
+        this.timer = new Timer();
         this.levelManager = new LevelManager();
         this.GameLoop = this.GameLoop.bind(this);
     }
@@ -15,15 +15,15 @@ class GameEngine {
         this.GameLoop(0);
     }
 
+    // Main Game Loop
     GameLoop(timestamp){
         window.requestAnimationFrame(this.GameLoop);
         this.timer.TimeSplit(timestamp);
-        let currentLevel = this.LevelManager.currentLevel;
+        let currentLevel = this.levelManager.currentLevel;
         if(this.timer.Time() > this.fps.interval){
-            this.displayManager.Clear();
-            this.inputManager.HandleInput(currentLevel);
-            this.physicsManager.ApplyPhysics(currentLevel);
-            this.currentLevel.Update(this.timer.TimeInSeconds());
+            this.inputManager.HandleInput(currentLevel.gameObjects);
+            this.physicsManager.ApplyPhysics(currentLevel.gameObjects);
+            currentLevel.Update(this.timer.TimeInSeconds());
             this.displayManager.Draw(currentLevel);
             this.timer.Reset();
         }

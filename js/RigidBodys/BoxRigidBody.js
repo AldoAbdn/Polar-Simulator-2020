@@ -18,7 +18,7 @@ class BoxRigidBody {
             this.fillRight = new Image();
             this.fillRight.src = fillRight;
         }
-        this.fill = this.fillLeft;
+        this.fill = this.fillRight;
         // Physics
         this.fixed = fixed;
         this.friction = friction;
